@@ -42,7 +42,7 @@ bool checkOpenGLError() {
 	bool foundError = false;
 	int glErr = glGetError();
 	while (glErr != GL_NO_ERROR) {
-		Logger::LogPrint("glError: %s", glErr);
+		Logger::LogPrint("glError: %d", glErr);
 		foundError = true;
 		glErr = glGetError();
 	}

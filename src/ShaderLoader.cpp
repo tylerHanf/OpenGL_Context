@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "Logger.h"
 
 /*
  * Read in GLSL file
@@ -12,6 +13,9 @@
 std::string readShaderSource(const char* filePath) {
 	std::string content;
 	std::ifstream fileStream(filePath, std::ios::in);
+	if (!fileStream.is_open()) {
+	  Logger::LogPrint("readShaderSource: ERROR Failed to load file %s", filePath);
+	}
 	std::string line = "";
 	while (!fileStream.eof()) {
 		getline(fileStream, line);
@@ -58,6 +62,7 @@ GLuint createShaderProgram(const char* vp, const char* fp) {
 
 	//Compile fragment shader
 	glCompileShader(fShader);
+	checkOpenGLError();
 	glGetShaderiv(fShader, GL_COMPILE_STATUS, &fragCompiled);
 	if (fragCompiled != 1) {
 		std::cout << "fragment compilation failed" << std::endl;
