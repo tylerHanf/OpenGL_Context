@@ -26,7 +26,12 @@ void ShaderHandler::MakeProgramFromSource(const char* vert_filepath,
   }
 }
 
-void ShaderHandler::MakeActive(std::string programName) {
+void ShaderHandler::MakeActive(const std::string programName) {
   activeProgram = programs.at(programName).index;
   glUseProgram(activeProgram);
 }
+
+ShaderProgram* ShaderHandler::GetShaderProgram(const std::string programName) {
+    return &programs.at(programName);
+}
+

@@ -16,10 +16,11 @@ struct ShaderProgram {
 class ShaderHandler {
  public:
   void MakeProgramFromSource(const char* vert_filepath,
-			     const char* frag_filepath,
-			     const std::string programName); 
+							 const char* frag_filepath,
+							 const std::string programName); 
 
-  void MakeActive(std::string programName);
+  void MakeActive(const std::string programName);
+  ShaderProgram* GetShaderProgram(const std::string programName);
   
  private:
   GLuint activeProgram;
